@@ -1,34 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
-  <title id="title">WMAPS mobile project incident card</title>
-  <desc id="desc">Signal: Fastest route. Forgettable drive.. System: Route-aware discovery + AI stories + voice. Result: 5 explore modes hands-free stories.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+  <title id="title">Wmaps project</title>
+  <desc id="desc">Finds hidden places along your route and tells their stories hands-free while you drive.</desc>
   <defs>
-    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2B333D"/></pattern>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D8FAF3"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
     <style>
-      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
       .sans { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     </style>
   </defs>
-  <rect width="720" height="520" rx="22" fill="#10151A"/>
-  <rect width="720" height="520" rx="22" fill="url(#dots)"/>
-  <rect x="1" y="1" width="718" height="518" rx="21" fill="none" stroke="#303945" stroke-width="2"/>
-  <rect width="720" height="124" rx="22" fill="#72C7A1"/>
-  <rect y="100" width="720" height="24" fill="#72C7A1"/>
-  <text x="28" y="36" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="#17120F">INCIDENT 03 / ROUTE EXPLORER</text>
-  <text x="28" y="88" class="sans" font-size="32" font-weight="900" fill="#17120F">WMAPS</text>
-  <rect x="536" y="42" width="152" height="48" rx="11" fill="#17120F"/>
-  <text x="560" y="72" class="mono" font-size="13" font-weight="700" fill="#FFF4E7">OPEN REPO ↗</text>
+  <rect width="720" height="470" rx="34" fill="url(#card)"/>
+  <rect x="1.5" y="1.5" width="717" height="467" rx="32.5" fill="none" stroke="#10BFA4" stroke-width="3"/>
+  <rect x="36" y="34" width="150" height="38" rx="19" fill="#10BFA4"/>
+  <text x="58" y="59" class="mono" font-size="13" font-weight="800" letter-spacing="2" fill="#FFFFFF">PROJECT 03</text>
+  <text x="36" y="142" class="sans" font-size="52" font-weight="900" fill="#17162B">Wmaps</text>
 
-  <text x="32" y="166" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="#72C7A1">SIGNAL</text>
-  <text x="32" y="204" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">Fastest route. Forgettable drive.</text>
-  <line x1="32" y1="234" x2="688" y2="234" stroke="#303945"/>
-
-  <text x="32" y="278" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="#72C7A1">SYSTEM</text>
-  <text x="32" y="316" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">Route-aware discovery</text>
-  <text x="32" y="350" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">+ AI stories + voice</text>
-  <line x1="32" y1="378" x2="688" y2="378" stroke="#303945"/>
-
-  <text x="32" y="422" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="#72C7A1">RESULT</text>
-  <text x="32" y="460" class="sans" font-size="27" font-weight="800" fill="#FFF4E7">5 explore modes · hands-free stories</text>
-  <circle cx="32" cy="494" r="5" fill="#48D597"/>
-  <text x="47" y="499" class="mono" font-size="12" font-weight="700" fill="#A6B0BB">SYSTEM DOCUMENTED</text>
+  <g transform="translate(438 28) scale(.78)">
+    <rect x="0" y="0" width="230" height="184" rx="40" fill="#D8FAF3"/>
+    <path d="M36 142 C54 76, 98 154, 128 84 S184 40, 200 72" fill="none" stroke="#10BFA4" stroke-width="12" stroke-linecap="round" stroke-dasharray="10 15"/>
+    <circle cx="36" cy="142" r="16" fill="#FFFFFF" stroke="#17162B" stroke-width="5"/>
+    <path d="M200 42 C177 42, 169 69, 200 105 C231 69, 223 42, 200 42Z" fill="#FFFFFF" stroke="#17162B" stroke-width="5"/>
+    <circle cx="200" cy="66" r="8" fill="#10BFA4"/>
+  </g>
+  <text x="36" y="226" class="sans" font-size="27" font-weight="700" fill="#34324A">Finds hidden places along your route and tells</text>
+  <text x="36" y="262" class="sans" font-size="27" font-weight="700" fill="#34324A">their stories hands-free while you drive.</text>
+  <rect x="36" y="310" width="648" height="58" rx="20" fill="#FFFFFF" opacity=".82"/>
+  <text x="60" y="346" class="mono" font-size="16" font-weight="750" fill="#55536D">JAVASCRIPT · GOOGLE MAPS · CLAUDE · VOICE</text>
+  <rect x="36" y="392" width="206" height="52" rx="26" fill="#17162B"/>
+  <text x="66" y="425" class="sans" font-size="17" font-weight="800" fill="#FFFFFF">VIEW PROJECT  ↗</text>
 </svg>

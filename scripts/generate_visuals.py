@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the self-contained SVG artwork used by the profile README."""
+"""Generate the bright, responsive artwork used by the profile README."""
 
 from __future__ import annotations
 
@@ -15,393 +15,320 @@ def write(name: str, content: str) -> None:
     (ASSETS / name).write_text(content.strip() + "\n", encoding="utf-8")
 
 
-def hero(theme: str) -> str:
+def embedded_cat() -> str:
+    return base64.b64encode((ASSETS / "chai-cat.jpg").read_bytes()).decode("ascii")
+
+
+def hero(theme: str, mobile: bool = False) -> str:
     palettes = {
-        "dark": {
-            "bg": "#0B0E11",
-            "panel": "#12171D",
-            "panel2": "#171E25",
-            "border": "#303944",
-            "text": "#FFF4E7",
-            "muted": "#A6B0BB",
-            "grid": "#202832",
-            "orange": "#F39A45",
-            "green": "#48D597",
-            "amber": "#F4C15D",
-        },
         "light": {
-            "bg": "#F3EDE4",
-            "panel": "#FFF9F0",
-            "panel2": "#F8EFE3",
-            "border": "#D6C8B7",
-            "text": "#29241F",
-            "muted": "#6D645B",
-            "grid": "#E5D9CA",
-            "orange": "#C96720",
-            "green": "#187B50",
-            "amber": "#9A620A",
+            "bg1": "#FFF7FA",
+            "bg2": "#EEF7FF",
+            "text": "#17162B",
+            "muted": "#55536D",
+            "panel": "#FFFFFF",
+            "line": "#D9D8EA",
+            "blue": "#287BFF",
+            "coral": "#FF5C7A",
+            "violet": "#8B5CF6",
+            "mint": "#22CDB2",
+        },
+        "dark": {
+            "bg1": "#11142A",
+            "bg2": "#181E3D",
+            "text": "#FFF8FC",
+            "muted": "#C4C7DF",
+            "panel": "#20264A",
+            "line": "#3B426A",
+            "blue": "#5B9CFF",
+            "coral": "#FF6F8B",
+            "violet": "#A882FF",
+            "mint": "#42E2C5",
         },
     }
     p = palettes[theme]
-    cat = base64.b64encode((ASSETS / "chai-cat.jpg").read_bytes()).decode("ascii")
+    cat = embedded_cat()
 
-    return f"""
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
-  <title id="title">Devashish Bhat's ChaiOps console</title>
-  <desc id="desc">A playful reliability dashboard with a calm orange cat drinking chai, subtle system signals, and three measured engineering outcomes.</desc>
+    if mobile:
+        return f"""
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="920" viewBox="0 0 720 920" role="img" aria-labelledby="title desc">
+  <title id="title">Devashish Bhat's portfolio introduction</title>
+  <desc id="desc">A bright introduction to Devashish Bhat, a recent UNC Charlotte computer science graduate who builds backend systems and AI products.</desc>
   <defs>
-    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="{p['grid']}" stroke-width="1"/>
-    </pattern>
-    <clipPath id="catClip">
-      <rect x="906" y="86" width="236" height="294" rx="24"/>
-    </clipPath>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity=".18"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="{p['bg1']}"/>
+      <stop offset="1" stop-color="{p['bg2']}"/>
+    </linearGradient>
+    <clipPath id="catClip"><rect x="160" y="474" width="400" height="332" rx="66"/></clipPath>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#17162B" flood-opacity=".18"/>
     </filter>
     <style>
-      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
       .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-      .pulse {{ transform-origin: 1084px 42px; animation: pulse 2.6s ease-out infinite; }}
-      .steam {{ stroke-dasharray: 18 16; animation: steam 3.8s ease-in-out infinite; }}
-      .packet {{ animation: packetFade 4.8s ease-in-out infinite; }}
-      @keyframes pulse {{ 0%, 60%, 100% {{ transform: scale(1); opacity: .95; }} 75% {{ transform: scale(1.8); opacity: .18; }} }}
-      @keyframes steam {{ 0%, 100% {{ stroke-dashoffset: 0; opacity: .18; }} 50% {{ stroke-dashoffset: -28; opacity: .85; }} }}
-      @keyframes packetFade {{ 0%, 100% {{ opacity: 0; }} 12%, 75% {{ opacity: 1; }} }}
-      @media (prefers-reduced-motion: reduce) {{
-        .pulse, .steam, .packet {{ animation: none !important; }}
-        .packet {{ display: none; }}
-      }}
+      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
+      .float-a {{ animation: floatA 5s ease-in-out infinite; transform-origin: center; }}
+      .float-b {{ animation: floatB 6s ease-in-out infinite; transform-origin: center; }}
+      .steam {{ stroke-dasharray: 22 18; animation: steam 4s ease-in-out infinite; }}
+      @keyframes floatA {{ 0%,100% {{ transform: translateY(0) rotate(0); }} 50% {{ transform: translateY(-10px) rotate(3deg); }} }}
+      @keyframes floatB {{ 0%,100% {{ transform: translateY(0); }} 50% {{ transform: translateY(9px); }} }}
+      @keyframes steam {{ 0%,100% {{ stroke-dashoffset: 0; opacity: .2; }} 50% {{ stroke-dashoffset: -34; opacity: .85; }} }}
+      @media (prefers-reduced-motion: reduce) {{ .float-a,.float-b,.steam {{ animation: none !important; }} }}
     </style>
   </defs>
+  <rect width="720" height="920" rx="34" fill="url(#bg)"/>
+  <circle class="float-a" cx="650" cy="95" r="46" fill="{p['coral']}" opacity=".22"/>
+  <path class="float-b" d="M40 356 C120 314, 172 398, 252 350 S386 312, 452 352" fill="none" stroke="{p['mint']}" stroke-width="10" stroke-linecap="round" opacity=".65"/>
+  <rect x="46" y="46" width="178" height="42" rx="21" fill="{p['blue']}"/>
+  <text x="68" y="73" class="mono" font-size="15" font-weight="800" letter-spacing="2" fill="#FFFFFF">HELLO, I'M</text>
 
-  <rect width="1200" height="500" rx="30" fill="{p['bg']}"/>
-  <rect width="1200" height="500" rx="30" fill="url(#grid)" opacity=".72"/>
-  <rect x="24" y="24" width="1152" height="452" rx="22" fill="{p['panel']}" stroke="{p['border']}" filter="url(#shadow)"/>
+  <text x="46" y="166" class="sans" font-size="68" font-weight="900" fill="{p['text']}">Devashish</text>
+  <text x="46" y="238" class="sans" font-size="68" font-weight="900" fill="{p['text']}">Bhat.</text>
+  <text x="46" y="293" class="sans" font-size="24" font-weight="750" fill="{p['violet']}">Recent M.S. Computer Science graduate</text>
+  <text x="46" y="327" class="sans" font-size="23" font-weight="700" fill="{p['text']}">UNC Charlotte · 4.0 GPA</text>
+  <text x="46" y="397" class="sans" font-size="25" font-weight="650" fill="{p['muted']}">I build useful backend systems and AI</text>
+  <text x="46" y="430" class="sans" font-size="25" font-weight="650" fill="{p['muted']}">products—with curiosity and good chai.</text>
 
-  <circle cx="52" cy="49" r="5" fill="#FF6B68"/>
-  <circle cx="70" cy="49" r="5" fill="{p['amber']}"/>
-  <circle cx="88" cy="49" r="5" fill="{p['green']}"/>
-  <text x="112" y="54" class="mono" font-size="14" font-weight="700" letter-spacing="2" fill="{p['muted']}">CHAI_OPS / CONTROL ROOM</text>
-  <circle class="pulse" cx="1084" cy="42" r="10" fill="{p['green']}" opacity=".24"/>
-  <circle cx="1084" cy="42" r="5" fill="{p['green']}"/>
-  <text x="1100" y="47" class="mono" font-size="12" font-weight="700" fill="{p['green']}">OBSERVABLE</text>
+  <rect x="144" y="458" width="432" height="364" rx="80" fill="{p['violet']}" opacity=".22" transform="rotate(-3 360 640)"/>
+  <image href="data:image/jpeg;base64,{cat}" x="160" y="474" width="400" height="332" preserveAspectRatio="xMidYMid slice" clip-path="url(#catClip)" filter="url(#shadow)"/>
+  <rect x="160" y="474" width="400" height="332" rx="66" fill="none" stroke="{p['coral']}" stroke-width="6"/>
+  <path class="steam" d="M 350 710 C 316 671, 376 644, 344 606" fill="none" stroke="#FFF8FC" stroke-width="6" stroke-linecap="round"/>
 
-  <text x="62" y="124" class="mono" font-size="15" font-weight="700" letter-spacing="3" fill="{p['orange']}">DEVASHISH BHAT</text>
-  <text x="62" y="180" class="sans" font-size="42" font-weight="800" fill="{p['text']}">Backend systems for when</text>
-  <text x="62" y="230" class="sans" font-size="42" font-weight="800" fill="{p['text']}">the happy path leaves the building.</text>
-  <text x="62" y="274" class="mono" font-size="15" fill="{p['muted']}">distributed systems  /  applied AI  /  measurable reliability</text>
-
-  <path d="M 66 316 C 215 294, 375 335, 518 313 S 740 294, 858 315" fill="none" stroke="{p['border']}" stroke-width="2"/>
-  <circle class="packet" r="5" fill="{p['orange']}">
-    <animateMotion dur="4.8s" repeatCount="indefinite" path="M 66 316 C 215 294, 375 335, 518 313 S 740 294, 858 315"/>
-  </circle>
-
-  <g transform="translate(62 338)">
-    <rect width="246" height="96" rx="14" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="18" y="27" class="mono" font-size="11" font-weight="700" letter-spacing="1.4" fill="{p['muted']}">SEARCH RELEVANCE</text>
-    <text x="18" y="64" class="mono" font-size="27" font-weight="800" fill="{p['text']}">0.61 → 0.84</text>
-    <text x="18" y="84" class="mono" font-size="10" fill="{p['green']}">TOP-5 / LABELED SET</text>
+  <g class="float-a">
+    <rect x="60" y="575" width="138" height="48" rx="24" fill="{p['blue']}"/>
+    <text x="88" y="606" class="mono" font-size="15" font-weight="800" fill="#FFFFFF">BACKEND</text>
   </g>
-  <g transform="translate(323 338)">
-    <rect width="246" height="96" rx="14" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="18" y="27" class="mono" font-size="11" font-weight="700" letter-spacing="1.4" fill="{p['muted']}">CITATION VALIDITY</text>
-    <text x="18" y="64" class="mono" font-size="27" font-weight="800" fill="{p['text']}">100%</text>
-    <text x="18" y="84" class="mono" font-size="10" fill="{p['green']}">CODE-VERIFIED / LEDGER</text>
+  <g class="float-b">
+    <rect x="508" y="545" width="154" height="48" rx="24" fill="{p['coral']}"/>
+    <text x="535" y="576" class="mono" font-size="15" font-weight="800" fill="#FFFFFF">APPLIED AI</text>
   </g>
-  <g transform="translate(584 338)">
-    <rect width="274" height="96" rx="14" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="18" y="27" class="mono" font-size="11" font-weight="700" letter-spacing="1.4" fill="{p['muted']}">BATCH RECOVERY</text>
-    <text x="18" y="64" class="mono" font-size="27" font-weight="800" fill="{p['text']}">50K / 20 min</text>
-    <text x="18" y="84" class="mono" font-size="10" fill="{p['green']}">RESTART-SAFE PAYMENTS</text>
+  <g class="float-a">
+    <rect x="466" y="765" width="196" height="48" rx="24" fill="{p['mint']}"/>
+    <text x="489" y="796" class="mono" font-size="14" font-weight="800" fill="#102B2A">DISTRIBUTED</text>
   </g>
-
-  <rect x="898" y="78" width="252" height="310" rx="29" fill="{p['orange']}" opacity=".28"/>
-  <image href="data:image/jpeg;base64,{cat}" x="906" y="86" width="236" height="294" preserveAspectRatio="xMidYMid slice" clip-path="url(#catClip)"/>
-  <rect x="906" y="86" width="236" height="294" rx="24" fill="none" stroke="{p['orange']}" stroke-width="2"/>
-  <path class="steam" d="M 1015 295 C 994 270, 1036 255, 1014 226" fill="none" stroke="{p['text']}" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-  <path class="steam" d="M 1040 300 C 1063 273, 1029 255, 1050 236" fill="none" stroke="{p['text']}" stroke-width="2" stroke-linecap="round" opacity=".45" style="animation-delay:-1.4s"/>
-  <rect x="932" y="354" width="184" height="48" rx="12" fill="{p['panel']}" stroke="{p['border']}"/>
-  <circle cx="952" cy="378" r="5" fill="{p['green']}"/>
-  <text x="966" y="382" class="mono" font-size="12" font-weight="700" fill="{p['text']}">CALM MODE: ACTIVE</text>
+  <text x="360" y="872" text-anchor="middle" class="mono" font-size="14" font-weight="700" letter-spacing="2" fill="{p['muted']}">BUILD · LEARN · MAKE IT USEFUL</text>
 </svg>
 """
+
+    return f"""
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Devashish Bhat's portfolio introduction</title>
+  <desc id="desc">A bright introduction to Devashish Bhat, a recent UNC Charlotte computer science graduate who builds backend systems and AI products.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="{p['bg1']}"/>
+      <stop offset="1" stop-color="{p['bg2']}"/>
+    </linearGradient>
+    <clipPath id="catClip"><rect x="835" y="92" width="290" height="410" rx="68"/></clipPath>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#17162B" flood-opacity=".2"/>
+    </filter>
+    <style>
+      .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
+      .float-a {{ animation: floatA 5s ease-in-out infinite; transform-origin: center; }}
+      .float-b {{ animation: floatB 6s ease-in-out infinite; transform-origin: center; }}
+      .steam {{ stroke-dasharray: 22 18; animation: steam 4s ease-in-out infinite; }}
+      @keyframes floatA {{ 0%,100% {{ transform: translateY(0) rotate(0); }} 50% {{ transform: translateY(-10px) rotate(3deg); }} }}
+      @keyframes floatB {{ 0%,100% {{ transform: translateY(0); }} 50% {{ transform: translateY(9px); }} }}
+      @keyframes steam {{ 0%,100% {{ stroke-dashoffset: 0; opacity: .2; }} 50% {{ stroke-dashoffset: -34; opacity: .85; }} }}
+      @media (prefers-reduced-motion: reduce) {{ .float-a,.float-b,.steam {{ animation: none !important; }} }}
+    </style>
+  </defs>
+  <rect width="1200" height="620" rx="34" fill="url(#bg)"/>
+  <circle class="float-a" cx="1120" cy="78" r="54" fill="{p['coral']}" opacity=".25"/>
+  <circle class="float-b" cx="760" cy="548" r="34" fill="{p['blue']}" opacity=".22"/>
+  <path d="M58 532 C170 482, 246 570, 356 520 S548 476, 656 528" fill="none" stroke="{p['mint']}" stroke-width="12" stroke-linecap="round" opacity=".72"/>
+  <rect x="64" y="58" width="178" height="42" rx="21" fill="{p['blue']}"/>
+  <text x="86" y="85" class="mono" font-size="15" font-weight="800" letter-spacing="2" fill="#FFFFFF">HELLO, I'M</text>
+
+  <text x="64" y="184" class="sans" font-size="72" font-weight="900" fill="{p['text']}">Devashish Bhat.</text>
+  <text x="64" y="239" class="sans" font-size="25" font-weight="750" fill="{p['violet']}">Recent M.S. Computer Science graduate</text>
+  <text x="64" y="275" class="sans" font-size="24" font-weight="700" fill="{p['text']}">UNC Charlotte · 4.0 GPA</text>
+  <text x="64" y="352" class="sans" font-size="29" font-weight="650" fill="{p['muted']}">I build useful backend systems and AI products—</text>
+  <text x="64" y="393" class="sans" font-size="29" font-weight="650" fill="{p['muted']}">with curiosity, careful engineering, and good chai.</text>
+
+  <g class="float-a">
+    <rect x="64" y="445" width="150" height="50" rx="25" fill="{p['blue']}"/>
+    <text x="93" y="477" class="mono" font-size="15" font-weight="800" fill="#FFFFFF">BACKEND</text>
+  </g>
+  <g class="float-b">
+    <rect x="228" y="445" width="164" height="50" rx="25" fill="{p['coral']}"/>
+    <text x="257" y="477" class="mono" font-size="15" font-weight="800" fill="#FFFFFF">APPLIED AI</text>
+  </g>
+  <g class="float-a">
+    <rect x="406" y="445" width="214" height="50" rx="25" fill="{p['mint']}"/>
+    <text x="431" y="477" class="mono" font-size="14" font-weight="800" fill="#102B2A">DISTRIBUTED SYSTEMS</text>
+  </g>
+
+  <rect x="815" y="72" width="330" height="450" rx="86" fill="{p['violet']}" opacity=".22" transform="rotate(4 980 297)"/>
+  <image href="data:image/jpeg;base64,{cat}" x="835" y="92" width="290" height="410" preserveAspectRatio="xMidYMid slice" clip-path="url(#catClip)" filter="url(#shadow)"/>
+  <rect x="835" y="92" width="290" height="410" rx="68" fill="none" stroke="{p['coral']}" stroke-width="6"/>
+  <path class="steam" d="M 968 410 C 936 374, 990 346, 960 311" fill="none" stroke="#FFF8FC" stroke-width="6" stroke-linecap="round"/>
+  <g class="float-b">
+    <circle cx="803" cy="150" r="44" fill="{p['mint']}"/>
+    <path d="M785 151 l12 12 24-28" fill="none" stroke="#102B2A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g class="float-a">
+    <rect x="1018" y="474" width="140" height="48" rx="24" fill="{p['blue']}"/>
+    <text x="1043" y="505" class="mono" font-size="14" font-weight="800" fill="#FFFFFF">SHIP IT</text>
+  </g>
+  <text x="64" y="581" class="mono" font-size="14" font-weight="700" letter-spacing="2" fill="{p['muted']}">BUILD · LEARN · MAKE IT USEFUL</text>
+</svg>
+"""
+
+
+def project_art(kind: str, accent: str, accent2: str) -> str:
+    if kind == "ledger":
+        return f"""
+  <g transform="translate(925 44)">
+    <rect x="38" y="18" width="170" height="150" rx="24" fill="{accent2}" transform="rotate(8 123 93)"/>
+    <rect x="10" y="8" width="170" height="150" rx="24" fill="#FFFFFF" stroke="#17162B" stroke-width="4" transform="rotate(-5 95 83)"/>
+    <text x="45" y="83" class="sans" font-size="64" font-weight="900" fill="{accent}">“</text>
+    <path d="M76 72 H150 M76 96 H142 M76 120 H126" stroke="#17162B" stroke-width="8" stroke-linecap="round"/>
+  </g>"""
+    if kind == "jirassic":
+        return f"""
+  <g transform="translate(930 38)">
+    <rect x="0" y="0" width="224" height="174" rx="34" fill="{accent2}"/>
+    <rect x="32" y="28" width="48" height="72" rx="24" fill="{accent}" stroke="#17162B" stroke-width="4"/>
+    <path d="M22 82 C22 126, 92 126, 92 82 M57 121 V146 M34 146 H80" fill="none" stroke="#17162B" stroke-width="7" stroke-linecap="round"/>
+    <rect x="118" y="36" width="20" height="20" rx="5" fill="#FFFFFF" stroke="#17162B" stroke-width="4"/>
+    <path d="M122 45 l5 5 9-12" fill="none" stroke="{accent}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M150 46 H198 M150 76 H198 M118 106 H198 M118 136 H180" stroke="#17162B" stroke-width="7" stroke-linecap="round"/>
+  </g>"""
+    return f"""
+  <g transform="translate(925 34)">
+    <rect x="0" y="0" width="230" height="184" rx="40" fill="{accent2}"/>
+    <path d="M36 142 C54 76, 98 154, 128 84 S184 40, 200 72" fill="none" stroke="{accent}" stroke-width="12" stroke-linecap="round" stroke-dasharray="10 15"/>
+    <circle cx="36" cy="142" r="16" fill="#FFFFFF" stroke="#17162B" stroke-width="5"/>
+    <path d="M200 42 C177 42, 169 69, 200 105 C231 69, 223 42, 200 42Z" fill="#FFFFFF" stroke="#17162B" stroke-width="5"/>
+    <circle cx="200" cy="66" r="8" fill="{accent}"/>
+  </g>"""
 
 
 def project_card(
     number: str,
-    project: str,
-    eyebrow: str,
-    signal: tuple[str, str],
-    system: tuple[str, str],
-    result: tuple[str, str],
+    name: str,
+    description: tuple[str, str],
+    tags: str,
     accent: str,
+    accent2: str,
+    kind: str,
+    mobile: bool = False,
 ) -> str:
-    return f"""
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="224" viewBox="0 0 1200 224" role="img" aria-labelledby="title desc">
-  <title id="title">{project} project incident card</title>
-  <desc id="desc">Signal: {signal[0]} {signal[1]}. System: {system[0]} {system[1]}. Result: {result[0]} {result[1]}.</desc>
+    art = project_art(kind, accent, accent2)
+    if mobile:
+        art = art.replace('transform="translate(925 44)"', 'transform="translate(440 36) scale(.78)"')
+        art = art.replace('transform="translate(930 38)"', 'transform="translate(440 32) scale(.78)"')
+        art = art.replace('transform="translate(925 34)"', 'transform="translate(438 28) scale(.78)"')
+        return f"""
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+  <title id="title">{name} project</title>
+  <desc id="desc">{description[0]} {description[1]}</desc>
   <defs>
-    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#2B333D"/>
-    </pattern>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{accent2}"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
     <style>
-      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
       .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
     </style>
   </defs>
-  <rect width="1200" height="224" rx="22" fill="#10151A"/>
-  <rect width="1200" height="224" rx="22" fill="url(#dots)"/>
-  <rect x="1" y="1" width="1198" height="222" rx="21" fill="none" stroke="#303945" stroke-width="2"/>
-  <rect width="184" height="224" rx="22" fill="{accent}"/>
-  <path d="M 162 0 H 184 V 224 H 162 C 177 188, 177 36, 162 0Z" fill="#10151A" opacity=".16"/>
+  <rect width="720" height="470" rx="34" fill="url(#card)"/>
+  <rect x="1.5" y="1.5" width="717" height="467" rx="32.5" fill="none" stroke="{accent}" stroke-width="3"/>
+  <rect x="36" y="34" width="150" height="38" rx="19" fill="{accent}"/>
+  <text x="58" y="59" class="mono" font-size="13" font-weight="800" letter-spacing="2" fill="#FFFFFF">PROJECT {number}</text>
+  <text x="36" y="142" class="sans" font-size="52" font-weight="900" fill="#17162B">{name}</text>
+{art}
+  <text x="36" y="226" class="sans" font-size="27" font-weight="700" fill="#34324A">{description[0]}</text>
+  <text x="36" y="262" class="sans" font-size="27" font-weight="700" fill="#34324A">{description[1]}</text>
+  <rect x="36" y="310" width="648" height="58" rx="20" fill="#FFFFFF" opacity=".82"/>
+  <text x="60" y="346" class="mono" font-size="16" font-weight="750" fill="#55536D">{tags}</text>
+  <rect x="36" y="392" width="206" height="52" rx="26" fill="#17162B"/>
+  <text x="66" y="425" class="sans" font-size="17" font-weight="800" fill="#FFFFFF">VIEW PROJECT  ↗</text>
+</svg>
+"""
 
-  <text x="28" y="38" class="mono" font-size="11" font-weight="700" letter-spacing="2" fill="#17120F">INCIDENT {number}</text>
-  <text x="28" y="92" class="sans" font-size="27" font-weight="900" fill="#17120F">{project}</text>
-  <text x="28" y="120" class="mono" font-size="11" font-weight="700" fill="#3E2B20">{eyebrow}</text>
-  <rect x="28" y="162" width="126" height="34" rx="9" fill="#17120F"/>
-  <text x="45" y="184" class="mono" font-size="11" font-weight="700" fill="#FFF4E7">OPEN REPO ↗</text>
-
-  <line x1="214" y1="42" x2="214" y2="184" stroke="#303945"/>
-  <line x1="540" y1="42" x2="540" y2="184" stroke="#303945"/>
-  <line x1="866" y1="42" x2="866" y2="184" stroke="#303945"/>
-
-  <text x="242" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="{accent}">SIGNAL</text>
-  <text x="242" y="98" class="sans" font-size="18" font-weight="700" fill="#FFF4E7">{signal[0]}</text>
-  <text x="242" y="126" class="sans" font-size="18" font-weight="700" fill="#FFF4E7">{signal[1]}</text>
-
-  <text x="568" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="{accent}">SYSTEM</text>
-  <text x="568" y="98" class="sans" font-size="17" font-weight="700" fill="#FFF4E7">{system[0]}</text>
-  <text x="568" y="126" class="sans" font-size="17" font-weight="700" fill="#FFF4E7">{system[1]}</text>
-
-  <text x="894" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="{accent}">RESULT</text>
-  <text x="894" y="98" class="sans" font-size="17" font-weight="800" fill="#FFF4E7">{result[0]}</text>
-  <text x="894" y="126" class="sans" font-size="17" font-weight="800" fill="#FFF4E7">{result[1]}</text>
-  <circle cx="894" cy="166" r="5" fill="#48D597"/>
-  <text x="908" y="170" class="mono" font-size="11" font-weight="700" fill="#A6B0BB">SYSTEM DOCUMENTED</text>
+    return f"""
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">{name} project</title>
+  <desc id="desc">{description[0]} {description[1]}</desc>
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{accent2}"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+    <style>
+      .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
+    </style>
+  </defs>
+  <rect width="1200" height="300" rx="34" fill="url(#card)"/>
+  <rect x="1.5" y="1.5" width="1197" height="297" rx="32.5" fill="none" stroke="{accent}" stroke-width="3"/>
+  <rect x="46" y="38" width="150" height="38" rx="19" fill="{accent}"/>
+  <text x="68" y="63" class="mono" font-size="13" font-weight="800" letter-spacing="2" fill="#FFFFFF">PROJECT {number}</text>
+  <text x="46" y="130" class="sans" font-size="48" font-weight="900" fill="#17162B">{name}</text>
+  <text x="46" y="181" class="sans" font-size="25" font-weight="700" fill="#34324A">{description[0]}</text>
+  <text x="46" y="214" class="sans" font-size="25" font-weight="700" fill="#34324A">{description[1]}</text>
+  <text x="48" y="263" class="mono" font-size="15" font-weight="750" fill="#55536D">{tags}</text>
+{art}
+  <rect x="946" y="228" width="208" height="48" rx="24" fill="#17162B"/>
+  <text x="978" y="259" class="sans" font-size="16" font-weight="800" fill="#FFFFFF">VIEW PROJECT  ↗</text>
 </svg>
 """
 
 
-def hero_mobile(theme: str) -> str:
-    palettes = {
-        "dark": {
-            "bg": "#0B0E11",
-            "panel": "#12171D",
-            "panel2": "#171E25",
-            "border": "#303944",
-            "text": "#FFF4E7",
-            "muted": "#A6B0BB",
-            "grid": "#202832",
-            "orange": "#F39A45",
-            "green": "#48D597",
-        },
-        "light": {
-            "bg": "#F3EDE4",
-            "panel": "#FFF9F0",
-            "panel2": "#F8EFE3",
-            "border": "#D6C8B7",
-            "text": "#29241F",
-            "muted": "#6D645B",
-            "grid": "#E5D9CA",
-            "orange": "#C96720",
-            "green": "#187B50",
-        },
-    }
-    p = palettes[theme]
-    cat = base64.b64encode((ASSETS / "chai-cat.jpg").read_bytes()).decode("ascii")
-    return f"""
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="650" viewBox="0 0 720 650" role="img" aria-labelledby="title desc">
-  <title id="title">Devashish Bhat's mobile ChaiOps console</title>
-  <desc id="desc">A compact reliability dashboard with a calm orange cat drinking chai and three measured engineering outcomes.</desc>
-  <defs>
-    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="{p['grid']}" stroke-width="1"/>
-    </pattern>
-    <clipPath id="catClip"><rect x="478" y="308" width="180" height="230" rx="22"/></clipPath>
-    <style>
-      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
-      .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-      .pulse {{ transform-origin: 611px 47px; animation: pulse 2.6s ease-out infinite; }}
-      .steam {{ stroke-dasharray: 18 16; animation: steam 3.8s ease-in-out infinite; }}
-      @keyframes pulse {{ 0%, 60%, 100% {{ transform: scale(1); opacity: .95; }} 75% {{ transform: scale(1.8); opacity: .18; }} }}
-      @keyframes steam {{ 0%, 100% {{ stroke-dashoffset: 0; opacity: .18; }} 50% {{ stroke-dashoffset: -28; opacity: .85; }} }}
-      @media (prefers-reduced-motion: reduce) {{ .pulse, .steam {{ animation: none !important; }} }}
-    </style>
-  </defs>
-  <rect width="720" height="650" rx="28" fill="{p['bg']}"/>
-  <rect width="720" height="650" rx="28" fill="url(#grid)" opacity=".72"/>
-  <rect x="20" y="20" width="680" height="610" rx="22" fill="{p['panel']}" stroke="{p['border']}"/>
-
-  <circle cx="48" cy="48" r="5" fill="#FF6B68"/>
-  <circle cx="66" cy="48" r="5" fill="#F4C15D"/>
-  <circle cx="84" cy="48" r="5" fill="{p['green']}"/>
-  <text x="108" y="53" class="mono" font-size="14" font-weight="700" letter-spacing="2" fill="{p['muted']}">CHAI_OPS</text>
-  <circle class="pulse" cx="611" cy="47" r="9" fill="{p['green']}" opacity=".24"/>
-  <circle cx="611" cy="47" r="4" fill="{p['green']}"/>
-  <text x="625" y="52" class="mono" font-size="11" font-weight="700" fill="{p['green']}">LIVE</text>
-
-  <text x="48" y="105" class="mono" font-size="15" font-weight="700" letter-spacing="3" fill="{p['orange']}">DEVASHISH BHAT</text>
-  <text x="48" y="157" class="sans" font-size="40" font-weight="800" fill="{p['text']}">Backend systems</text>
-  <text x="48" y="204" class="sans" font-size="40" font-weight="800" fill="{p['text']}">for when the happy path</text>
-  <text x="48" y="251" class="sans" font-size="40" font-weight="800" fill="{p['text']}">leaves the building.</text>
-  <text x="48" y="282" class="mono" font-size="13" fill="{p['muted']}">distributed systems / applied AI / reliability</text>
-
-  <g transform="translate(48 308)">
-    <rect width="400" height="82" rx="13" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="16" y="24" class="mono" font-size="11" font-weight="700" letter-spacing="1.2" fill="{p['muted']}">SEARCH RELEVANCE</text>
-    <text x="16" y="58" class="mono" font-size="24" font-weight="800" fill="{p['text']}">0.61 → 0.84</text>
-    <text x="218" y="57" class="mono" font-size="10" fill="{p['green']}">TOP-5 / LABELED</text>
-  </g>
-  <g transform="translate(48 402)">
-    <rect width="400" height="82" rx="13" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="16" y="24" class="mono" font-size="11" font-weight="700" letter-spacing="1.2" fill="{p['muted']}">CITATION VALIDITY</text>
-    <text x="16" y="58" class="mono" font-size="24" font-weight="800" fill="{p['text']}">100%</text>
-    <text x="124" y="57" class="mono" font-size="10" fill="{p['green']}">CODE-VERIFIED / LEDGER</text>
-  </g>
-  <g transform="translate(48 496)">
-    <rect width="400" height="82" rx="13" fill="{p['panel2']}" stroke="{p['border']}"/>
-    <text x="16" y="24" class="mono" font-size="11" font-weight="700" letter-spacing="1.2" fill="{p['muted']}">BATCH RECOVERY</text>
-    <text x="16" y="58" class="mono" font-size="24" font-weight="800" fill="{p['text']}">50K / 20 min</text>
-    <text x="232" y="57" class="mono" font-size="10" fill="{p['green']}">RESTART-SAFE</text>
-  </g>
-
-  <rect x="470" y="300" width="196" height="246" rx="27" fill="{p['orange']}" opacity=".28"/>
-  <image href="data:image/jpeg;base64,{cat}" x="478" y="308" width="180" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#catClip)"/>
-  <rect x="478" y="308" width="180" height="230" rx="22" fill="none" stroke="{p['orange']}" stroke-width="2"/>
-  <path class="steam" d="M 558 475 C 540 454, 573 441, 556 417" fill="none" stroke="{p['text']}" stroke-width="3" stroke-linecap="round" opacity=".65"/>
-  <rect x="493" y="520" width="150" height="42" rx="11" fill="{p['panel']}" stroke="{p['border']}"/>
-  <circle cx="510" cy="541" r="5" fill="{p['green']}"/>
-  <text x="523" y="545" class="mono" font-size="11" font-weight="700" fill="{p['text']}">CALM: ACTIVE</text>
-</svg>
-"""
-
-
-def project_card_mobile(
-    number: str,
-    project: str,
-    eyebrow: str,
-    signal: tuple[str, str],
-    system: tuple[str, str],
-    result: tuple[str, str],
-    accent: str,
-) -> str:
-    return f"""
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
-  <title id="title">{project} mobile project incident card</title>
-  <desc id="desc">Signal: {signal[0]} {signal[1]}. System: {system[0]} {system[1]}. Result: {result[0]} {result[1]}.</desc>
-  <defs>
-    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2B333D"/></pattern>
-    <style>
-      .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }}
-      .sans {{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-    </style>
-  </defs>
-  <rect width="720" height="520" rx="22" fill="#10151A"/>
-  <rect width="720" height="520" rx="22" fill="url(#dots)"/>
-  <rect x="1" y="1" width="718" height="518" rx="21" fill="none" stroke="#303945" stroke-width="2"/>
-  <rect width="720" height="124" rx="22" fill="{accent}"/>
-  <rect y="100" width="720" height="24" fill="{accent}"/>
-  <text x="28" y="36" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="#17120F">INCIDENT {number} / {eyebrow}</text>
-  <text x="28" y="88" class="sans" font-size="32" font-weight="900" fill="#17120F">{project}</text>
-  <rect x="536" y="42" width="152" height="48" rx="11" fill="#17120F"/>
-  <text x="560" y="72" class="mono" font-size="13" font-weight="700" fill="#FFF4E7">OPEN REPO ↗</text>
-
-  <text x="32" y="166" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="{accent}">SIGNAL</text>
-  <text x="32" y="204" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">{signal[0]} {signal[1]}</text>
-  <line x1="32" y1="234" x2="688" y2="234" stroke="#303945"/>
-
-  <text x="32" y="278" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="{accent}">SYSTEM</text>
-  <text x="32" y="316" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">{system[0]}</text>
-  <text x="32" y="350" class="sans" font-size="27" font-weight="700" fill="#FFF4E7">{system[1]}</text>
-  <line x1="32" y1="378" x2="688" y2="378" stroke="#303945"/>
-
-  <text x="32" y="422" class="mono" font-size="16" font-weight="700" letter-spacing="2" fill="{accent}">RESULT</text>
-  <text x="32" y="460" class="sans" font-size="27" font-weight="800" fill="#FFF4E7">{result[0]} · {result[1]}</text>
-  <circle cx="32" cy="494" r="5" fill="#48D597"/>
-  <text x="47" y="499" class="mono" font-size="12" font-weight="700" fill="#A6B0BB">SYSTEM DOCUMENTED</text>
-</svg>
-"""
+PROJECTS = [
+    (
+        "01",
+        "Ledger",
+        ("An AI research assistant for SEC filings that", "grounds every answer in exact source citations."),
+        "PYTHON · LANGGRAPH · QDRANT · FASTAPI",
+        "#287BFF",
+        "#DDEBFF",
+        "ledger",
+    ),
+    (
+        "02",
+        "Jirassic",
+        ("Turns standup recordings into structured,", "story-pointed Jira tasks your team can use."),
+        "TYPESCRIPT · NEXT.JS · WHISPER · GEMINI",
+        "#FF4F7B",
+        "#FFE1E9",
+        "jirassic",
+    ),
+    (
+        "03",
+        "Wmaps",
+        ("Finds hidden places along your route and tells", "their stories hands-free while you drive."),
+        "JAVASCRIPT · GOOGLE MAPS · CLAUDE · VOICE",
+        "#10BFA4",
+        "#D8FAF3",
+        "wmaps",
+    ),
+]
 
 
 def main() -> None:
     ASSETS.mkdir(exist_ok=True)
-    write("chaiops-hero-dark.svg", hero("dark"))
-    write("chaiops-hero-light.svg", hero("light"))
-    write("chaiops-hero-mobile-dark.svg", hero_mobile("dark"))
-    write("chaiops-hero-mobile-light.svg", hero_mobile("light"))
-    write(
-        "project-ledger.svg",
-        project_card(
-            "01",
-            "LEDGER",
-            "TRUSTWORTHY AI",
-            ("Answers sounded right.", "Evidence was optional."),
-            ("LangGraph + hybrid search", "+ code-verified quotes"),
-            ("100% valid citations", "recall@5  0.70 → 0.91"),
-            "#F39A45",
-        ),
-    )
-    write(
-        "project-jirassic.svg",
-        project_card(
-            "02",
-            "JIRASSIC",
-            "MEETINGS → WORK",
-            ("Standups ended.", "Action items evaporated."),
-            ("Whisper → Gemini", "→ story-pointed Jira tasks"),
-            ("2nd Prize", "Hack@Davidson 2025"),
-            "#E7B557",
-        ),
-    )
-    write(
-        "project-wmaps.svg",
-        project_card(
-            "03",
-            "WMAPS",
-            "ROUTE EXPLORER",
-            ("Fastest route.", "Forgettable drive."),
-            ("Route-aware discovery", "+ AI stories + voice"),
-            ("5 explore modes", "hands-free stories"),
-            "#72C7A1",
-        ),
-    )
-    write(
-        "project-ledger-mobile.svg",
-        project_card_mobile(
-            "01",
-            "LEDGER",
-            "TRUSTWORTHY AI",
-            ("Answers sounded right.", "Evidence was optional."),
-            ("LangGraph + hybrid search", "+ code-verified quotes"),
-            ("100% valid citations", "recall@5  0.70 → 0.91"),
-            "#F39A45",
-        ),
-    )
-    write(
-        "project-jirassic-mobile.svg",
-        project_card_mobile(
-            "02",
-            "JIRASSIC",
-            "MEETINGS → WORK",
-            ("Standups ended.", "Action items evaporated."),
-            ("Whisper → Gemini", "→ story-pointed Jira tasks"),
-            ("2nd Prize", "Hack@Davidson 2025"),
-            "#E7B557",
-        ),
-    )
-    write(
-        "project-wmaps-mobile.svg",
-        project_card_mobile(
-            "03",
-            "WMAPS",
-            "ROUTE EXPLORER",
-            ("Fastest route.", "Forgettable drive."),
-            ("Route-aware discovery", "+ AI stories + voice"),
-            ("5 explore modes", "hands-free stories"),
-            "#72C7A1",
-        ),
-    )
+    write("portfolio-hero-light.svg", hero("light"))
+    write("portfolio-hero-dark.svg", hero("dark"))
+    write("portfolio-hero-mobile-light.svg", hero("light", mobile=True))
+    write("portfolio-hero-mobile-dark.svg", hero("dark", mobile=True))
+    for number, name, description, tags, accent, accent2, kind in PROJECTS:
+        slug = name.lower()
+        write(
+            f"project-{slug}.svg",
+            project_card(number, name, description, tags, accent, accent2, kind),
+        )
+        write(
+            f"project-{slug}-mobile.svg",
+            project_card(
+                number,
+                name,
+                description,
+                tags,
+                accent,
+                accent2,
+                kind,
+                mobile=True,
+            ),
+        )
 
 
 if __name__ == "__main__":

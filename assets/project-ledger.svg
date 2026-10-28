@@ -1,42 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="224" viewBox="0 0 1200 224" role="img" aria-labelledby="title desc">
-  <title id="title">LEDGER project incident card</title>
-  <desc id="desc">Signal: Answers sounded right. Evidence was optional.. System: LangGraph + hybrid search + code-verified quotes. Result: 100% valid citations recall@5  0.70 → 0.91.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Ledger project</title>
+  <desc id="desc">An AI research assistant for SEC filings that grounds every answer in exact source citations.</desc>
   <defs>
-    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#2B333D"/>
-    </pattern>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#DDEBFF"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
     <style>
-      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
       .sans { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     </style>
   </defs>
-  <rect width="1200" height="224" rx="22" fill="#10151A"/>
-  <rect width="1200" height="224" rx="22" fill="url(#dots)"/>
-  <rect x="1" y="1" width="1198" height="222" rx="21" fill="none" stroke="#303945" stroke-width="2"/>
-  <rect width="184" height="224" rx="22" fill="#F39A45"/>
-  <path d="M 162 0 H 184 V 224 H 162 C 177 188, 177 36, 162 0Z" fill="#10151A" opacity=".16"/>
+  <rect width="1200" height="300" rx="34" fill="url(#card)"/>
+  <rect x="1.5" y="1.5" width="1197" height="297" rx="32.5" fill="none" stroke="#287BFF" stroke-width="3"/>
+  <rect x="46" y="38" width="150" height="38" rx="19" fill="#287BFF"/>
+  <text x="68" y="63" class="mono" font-size="13" font-weight="800" letter-spacing="2" fill="#FFFFFF">PROJECT 01</text>
+  <text x="46" y="130" class="sans" font-size="48" font-weight="900" fill="#17162B">Ledger</text>
+  <text x="46" y="181" class="sans" font-size="25" font-weight="700" fill="#34324A">An AI research assistant for SEC filings that</text>
+  <text x="46" y="214" class="sans" font-size="25" font-weight="700" fill="#34324A">grounds every answer in exact source citations.</text>
+  <text x="48" y="263" class="mono" font-size="15" font-weight="750" fill="#55536D">PYTHON · LANGGRAPH · QDRANT · FASTAPI</text>
 
-  <text x="28" y="38" class="mono" font-size="11" font-weight="700" letter-spacing="2" fill="#17120F">INCIDENT 01</text>
-  <text x="28" y="92" class="sans" font-size="27" font-weight="900" fill="#17120F">LEDGER</text>
-  <text x="28" y="120" class="mono" font-size="11" font-weight="700" fill="#3E2B20">TRUSTWORTHY AI</text>
-  <rect x="28" y="162" width="126" height="34" rx="9" fill="#17120F"/>
-  <text x="45" y="184" class="mono" font-size="11" font-weight="700" fill="#FFF4E7">OPEN REPO ↗</text>
-
-  <line x1="214" y1="42" x2="214" y2="184" stroke="#303945"/>
-  <line x1="540" y1="42" x2="540" y2="184" stroke="#303945"/>
-  <line x1="866" y1="42" x2="866" y2="184" stroke="#303945"/>
-
-  <text x="242" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="#F39A45">SIGNAL</text>
-  <text x="242" y="98" class="sans" font-size="18" font-weight="700" fill="#FFF4E7">Answers sounded right.</text>
-  <text x="242" y="126" class="sans" font-size="18" font-weight="700" fill="#FFF4E7">Evidence was optional.</text>
-
-  <text x="568" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="#F39A45">SYSTEM</text>
-  <text x="568" y="98" class="sans" font-size="17" font-weight="700" fill="#FFF4E7">LangGraph + hybrid search</text>
-  <text x="568" y="126" class="sans" font-size="17" font-weight="700" fill="#FFF4E7">+ code-verified quotes</text>
-
-  <text x="894" y="58" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="#F39A45">RESULT</text>
-  <text x="894" y="98" class="sans" font-size="17" font-weight="800" fill="#FFF4E7">100% valid citations</text>
-  <text x="894" y="126" class="sans" font-size="17" font-weight="800" fill="#FFF4E7">recall@5  0.70 → 0.91</text>
-  <circle cx="894" cy="166" r="5" fill="#48D597"/>
-  <text x="908" y="170" class="mono" font-size="11" font-weight="700" fill="#A6B0BB">SYSTEM DOCUMENTED</text>
+  <g transform="translate(925 44)">
+    <rect x="38" y="18" width="170" height="150" rx="24" fill="#DDEBFF" transform="rotate(8 123 93)"/>
+    <rect x="10" y="8" width="170" height="150" rx="24" fill="#FFFFFF" stroke="#17162B" stroke-width="4" transform="rotate(-5 95 83)"/>
+    <text x="45" y="83" class="sans" font-size="64" font-weight="900" fill="#287BFF">“</text>
+    <path d="M76 72 H150 M76 96 H142 M76 120 H126" stroke="#17162B" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <rect x="946" y="228" width="208" height="48" rx="24" fill="#17162B"/>
+  <text x="978" y="259" class="sans" font-size="16" font-weight="800" fill="#FFFFFF">VIEW PROJECT  ↗</text>
 </svg>
