@@ -86,7 +86,7 @@ def hero(theme: str, mobile: bool = False) -> str:
   <text x="46" y="293" class="sans" font-size="24" font-weight="750" fill="{p['violet']}">Recent M.S. Computer Science graduate</text>
   <text x="46" y="327" class="sans" font-size="23" font-weight="700" fill="{p['text']}">UNC Charlotte · 4.0 GPA</text>
   <text x="46" y="397" class="sans" font-size="25" font-weight="650" fill="{p['muted']}">I build useful backend systems and AI</text>
-  <text x="46" y="430" class="sans" font-size="25" font-weight="650" fill="{p['muted']}">products—with curiosity and good chai.</text>
+  <text x="46" y="430" class="sans" font-size="25" font-weight="650" fill="{p['muted']}">products, with curiosity and good chai.</text>
 
   <rect x="144" y="458" width="432" height="364" rx="80" fill="{p['violet']}" opacity=".22" transform="rotate(-3 360 640)"/>
   <image href="data:image/jpeg;base64,{cat}" x="160" y="474" width="400" height="332" preserveAspectRatio="xMidYMid slice" clip-path="url(#catClip)" filter="url(#shadow)"/>
@@ -144,7 +144,7 @@ def hero(theme: str, mobile: bool = False) -> str:
   <text x="64" y="184" class="sans" font-size="72" font-weight="900" fill="{p['text']}">Devashish Bhat.</text>
   <text x="64" y="239" class="sans" font-size="25" font-weight="750" fill="{p['violet']}">Recent M.S. Computer Science graduate</text>
   <text x="64" y="275" class="sans" font-size="24" font-weight="700" fill="{p['text']}">UNC Charlotte · 4.0 GPA</text>
-  <text x="64" y="352" class="sans" font-size="29" font-weight="650" fill="{p['muted']}">I build useful backend systems and AI products—</text>
+  <text x="64" y="352" class="sans" font-size="29" font-weight="650" fill="{p['muted']}">I build useful backend systems and AI products</text>
   <text x="64" y="393" class="sans" font-size="29" font-weight="650" fill="{p['muted']}">with curiosity, careful engineering, and good chai.</text>
 
   <g class="float-a">

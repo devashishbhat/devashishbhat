@@ -10,13 +10,11 @@
   <a href="mailto:dbhat.cs@gmail.com"><strong>Email</strong></a>
   &nbsp;·&nbsp;
   <a href="https://www.linkedin.com/in/devashish-bhat/"><strong>LinkedIn</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/devashishbhat"><strong>GitHub</strong></a>
 </p>
 
 ## A little about me
 
-I'm a recent **M.S. Computer Science graduate from UNC Charlotte with a 4.0 GPA**. I enjoy turning complicated ideas into useful software—especially backend systems, distributed applications, and AI products that are thoughtful about how they behave in the real world.
+I'm a recent **M.S. Computer Science graduate from UNC Charlotte with a 4.0 GPA**. I enjoy turning complicated ideas into useful software, especially backend systems, distributed applications, and AI products that are thoughtful about how they behave in the real world.
 
 Right now, I'm working on an LLM recommendation service and hybrid marketplace search. I like projects where there is something interesting to learn, something real to build, and a clear reason for the software to exist.
 
