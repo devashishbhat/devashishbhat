@@ -14,13 +14,9 @@
 
 ## A little about me
 
-<h3>
-I'm a recent <strong>M.S. Computer Science graduate from UNC Charlotte with a 4.0 GPA</strong>. I enjoy turning complicated ideas into useful software, especially backend systems, distributed applications, and AI products that are thoughtful about how they behave in the real world.
-</h3>
+I'm a recent M.S. Computer Science graduate from UNC Charlotte with a 4.0 GPA. I enjoy turning complicated ideas into useful software, especially backend systems, distributed applications, and AI products that are thoughtful about how they behave in the real world.
 
-<h3>
 Right now, I'm working on an LLM recommendation service and hybrid marketplace search. I like projects where there is something interesting to learn, something real to build, and a clear reason for the software to exist.
-</h3>
 
 ## Selected work
 
@@ -64,9 +60,7 @@ Right now, I'm working on an LLM recommendation service and hybrid marketplace s
 
 ## Beyond the code
 
-<h3>
 I have taught parallel and distributed computing, helped students untangle tricky C++ bugs, and led a student community that made a new campus feel a little more like home. I care about good systems, but I care just as much about the people using and building them.
-</h3>
 
 ---
 
